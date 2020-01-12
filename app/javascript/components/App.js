@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import Films from './Films';
 import FilmsApi from '../components/api/FilmsApi';
 import Loader from '../components/Loader';
+import styled from 'styled-components';
+
+const Body = styled.div`
+  background: rgb(9,8,10);
+  background: linear-gradient(90deg, rgba(9,8,10,1) 0%, rgba(194,154,125,1) 48%, rgba(115,13,78,1) 100%, rgba(0,212,255,1) 100%);
+`
 
 class App extends Component {
 
@@ -28,9 +34,9 @@ class App extends Component {
 
   render() {
     return(
-      <div>
+      <Body>
         {this.renderContent()}
-      </div>
+      </Body>
     )
   };
 };

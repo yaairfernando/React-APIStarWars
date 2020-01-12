@@ -9,7 +9,7 @@ class Films extends Component {
       return <FilmItem key={film.episode_id} film={film} />
     })
     return(
-      <div>{Films}</div>
+      <div className="container pr-4 border pl-4">{Films}</div>
     )
   }
 }

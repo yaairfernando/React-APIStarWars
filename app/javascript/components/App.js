@@ -8,14 +8,19 @@ import styled from 'styled-components';
 class App extends Component {
 
   state = {
-    films: []
+    films: [],
+    planets: []
   }
 
   componentDidMount = async () => {
-    const response = await FilmsApi.post('/getFilms')
-    const films = response.data.contextWrites.to[0].results
+    const getFilms = await FilmsApi.post('/getFilms')
+    const getPlanets = await FilmsApi.post('/getPlanets')
+    const planets = getPlanets.data.contextWrites.to[0].results
+    console.log(planets);
+    const films = getFilms.data.contextWrites.to[0].results
     this.setState({
-      films
+      films,
+      planets
     });
   }
 

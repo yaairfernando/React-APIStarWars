@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import propTypes from 'prop-types';
 
 const Container = styled.div`
   box-shadow: 1px 3px 13px rgba(255,255,255,0.5), -1px -4px 11px rgba(255,255,255,0.5);
@@ -24,9 +25,32 @@ const CardBody = styled.div`
   }
 `
 
-const FilmItem = ({film}) => {
-  console.log(film)
+const FilmItem = (props) => {
+  // console.log(film.planets)
+  // console.log(planets);
+  // const planetsArr = [];
+  // planets.map((planet) => {
+  //   // console.log(planet.url)
+  //   film.planets.map((film) => {
+  //     // planet.url === film
+  //     if (planet.url === film){
+  //       planetsArr.push(planet)
+  //       // console.log(planet.url)
+  //     }
+  //   })
+  // })
+  // console.log(planets)
+  // const pl = planets.filter(planet => planet.url = 'https://swapi.co/api/planets/2/')
+  // console.log(pl)
+  // console.log(planetsArr);
+  // console.log(props)
+
+  const showPlanet = () => {
+    // console.log(props.film);
+    props.showPlanet(props.film)
+  }
   return(
+    
     <Container className="card mb-5">
       <div className="row no-gutters">
         <div className="col-md-4">
@@ -34,16 +58,22 @@ const FilmItem = ({film}) => {
         </div>
         <div className="col-md-8">
           <CardBody className="card-body">
-            <h5 className="card-title">{film.title}</h5>
-            <p className="card-text">Director: {film.director}</p>
-            <p className="card-text">Producer: {film.producer}</p>
-            <p className="card-text">Release: {film.release_date}</p>
-            <p className="card-text">Descrition: {film.opening_crawl}</p>
+            <h5 className="card-title">{props.film.title}</h5>
+            <p className="card-text">Director: {props.film.director}</p>
+            <p className="card-text">Producer: {props.film.producer}</p>
+            <p className="card-text">Release: {props.film.release_date}</p>
+            <p className="card-text">Descrition: {props.film.opening_crawl}</p>
+            <button className="btn btn-primary" onClick={showPlanet} >Planets</button>
           </CardBody>
         </div>
       </div>
     </Container>
   )
+}
+
+FilmItem.propTypes = {
+  film: propTypes.object.isRequired,
+  planets: propTypes.array.isRequired
 }
 
 export default FilmItem;

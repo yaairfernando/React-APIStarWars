@@ -16,7 +16,6 @@ class App extends Component {
     const getFilms = await FilmsApi.post('/getFilms')
     const getPlanets = await FilmsApi.post('/getPlanets')
     const planets = getPlanets.data.contextWrites.to[0].results
-    console.log(planets);
     const films = getFilms.data.contextWrites.to[0].results
     this.setState({
       films,
@@ -24,12 +23,24 @@ class App extends Component {
     });
   }
 
+  showPlanet = (film) => {
+    let planetsArr = [];
+    this.state.planets.map((planet) => {
+      film.planets.map((film) => {
+        if (planet.url === film){
+          planetsArr.push(planet)
+        }
+      })
+    })
+    console.log(planetsArr);
+  }
+
   renderContent() {
     if (this.state.films.length === 0) {
       return <Loader />
     } 
     if (this.state.films) {
-      return <Films films={this.state.films} />
+      return <Films films={this.state.films} planets={this.state.planets} showPlanet={this.showPlanet}/>
     }
   }
 

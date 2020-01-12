@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+  font-family: 'Lato', sans-serif !important;
+  background: rgb(9,8,10);
+  background: linear-gradient(90deg, rgba(9,8,10,1) 0%, rgba(194,154,125,1) 48%, rgba(115,13,78,1) 100%, rgba(0,212,255,1) 100%);
+ }

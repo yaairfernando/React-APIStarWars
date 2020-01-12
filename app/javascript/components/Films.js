@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import FilmsApi from '../components/api/FilmsApi';
+import FilmItem from '../components/FilmItem';
 
 class Films extends Component {
-
-  componentDidMount = async () => {
-    const response = await FilmsApi.post('/getFilms')
-    const films = response.data.contextWrites.to[0].results
-    this.props.fetchFilms(films)
-  }
-
+  
   render() {
-    console.log(this.props.films)
+    const Films = this.props.films.map((film) => {
+      return <FilmItem key={film.episode_id} film={film} />
+    })
     return(
-      <div>Films</div>
+      <div>{Films}</div>
     )
   }
 }
 
 Films.propTypes = {
-  fetchFilms: propTypes.func.isRequired,
   films: propTypes.array.isRequired
 }
 

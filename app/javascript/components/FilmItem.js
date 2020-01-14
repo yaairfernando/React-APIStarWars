@@ -29,17 +29,28 @@ const CardBody = styled.div`
 class FilmItem extends React.Component {
 
   state = {
-    show: false
+    show: false,
+    planetsArr: []
   }
 
   showModal = () => {
     this.setState({ show: true })
-    this.props.showPlanet(this.props.film)
+    let planetsArr = [];
+    this.props.planets.map((planet) => {
+      this.props.film.planets.map((film) => {
+        if (planet.url === film){
+          planetsArr.push(planet)
+        }
+      })
+    })
+    this.setState({ planetsArr });
   }
 
   hideModal = () => {
     this.setState({ show: false })
   }
+
+  
 
   render() {
     return(
@@ -56,7 +67,7 @@ class FilmItem extends React.Component {
               <p className="card-text">Release: {this.props.film.release_date}</p>
               <p className="card-text">Descrition: {this.props.film.opening_crawl}</p>
               <button className="btn btn-primary" onClick={this.showModal} data-toggle="modal" data-target="#exampleModalCenter" >Planets</button>
-              <PlanetsModal show={this.state.show} onHide={this.hideModal} />
+              <PlanetsModal show={this.state.show} onHide={this.hideModal} planets={this.state.planetsArr} title={this.props.film.title} />
             </CardBody>
           </div>
         </div>

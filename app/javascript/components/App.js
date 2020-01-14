@@ -24,30 +24,12 @@ class App extends Component {
     });
   }
 
-  showPlanet = (film) => {
-    let planetsArr = [];
-    this.state.planets.map((planet) => {
-      film.planets.map((film) => {
-        if (planet.url === film){
-          console.log(planet)
-          planetsArr.push(planet)
-          this.setState({ films_planets: [...this.state.films_planets, planet]})
-        }
-      })
-    })
-    // planetsArr.map((planetArr) => {
-    //   this.setState({ films_planets: planetArr })
-    // })
-    console.log(planetsArr);
-    console.log(this.state.films_planets)
-  }
-
   renderContent() {
     if (this.state.films.length === 0) {
       return <Loader />
     } 
     if (this.state.films) {
-      return <Films films={this.state.films} planets={this.state.planets} showPlanet={this.showPlanet}/>
+      return <Films films={this.state.films} planets={this.state.planets} />
     }
   }
 

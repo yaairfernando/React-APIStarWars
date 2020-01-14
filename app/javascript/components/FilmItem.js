@@ -26,24 +26,7 @@ const CardBody = styled.div`
 `
 
 const FilmItem = (props) => {
-  // console.log(film.planets)
-  // console.log(planets);
-  // const planetsArr = [];
-  // planets.map((planet) => {
-  //   // console.log(planet.url)
-  //   film.planets.map((film) => {
-  //     // planet.url === film
-  //     if (planet.url === film){
-  //       planetsArr.push(planet)
-  //       // console.log(planet.url)
-  //     }
-  //   })
-  // })
-  // console.log(planets)
-  // const pl = planets.filter(planet => planet.url = 'https://swapi.co/api/planets/2/')
-  // console.log(pl)
-  // console.log(planetsArr);
-  // console.log(props)
+
 
   const showPlanet = () => {
     // console.log(props.film);
@@ -63,7 +46,7 @@ const FilmItem = (props) => {
             <p className="card-text">Producer: {props.film.producer}</p>
             <p className="card-text">Release: {props.film.release_date}</p>
             <p className="card-text">Descrition: {props.film.opening_crawl}</p>
-            <button className="btn btn-primary" onClick={showPlanet} >Planets</button>
+            <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" >Planets</button>
           </CardBody>
         </div>
       </div>
@@ -77,3 +60,4 @@ FilmItem.propTypes = {
 }
 
 export default FilmItem;
+

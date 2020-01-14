@@ -9,7 +9,8 @@ class App extends Component {
 
   state = {
     films: [],
-    planets: []
+    planets: [],
+    films_planets: []
   }
 
   componentDidMount = async () => {
@@ -28,11 +29,17 @@ class App extends Component {
     this.state.planets.map((planet) => {
       film.planets.map((film) => {
         if (planet.url === film){
+          console.log(planet)
           planetsArr.push(planet)
+          this.setState({ films_planets: [...this.state.films_planets, planet]})
         }
       })
     })
+    // planetsArr.map((planetArr) => {
+    //   this.setState({ films_planets: planetArr })
+    // })
     console.log(planetsArr);
+    console.log(this.state.films_planets)
   }
 
   renderContent() {

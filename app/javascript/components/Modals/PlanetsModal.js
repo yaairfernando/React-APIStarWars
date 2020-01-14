@@ -1,5 +1,6 @@
 import React from 'react'
-import { Modal, Button } from 'react-bootstrap-modal'
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
 
 const PlanetsModal = (props) => {
   return(

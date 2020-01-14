@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
+import PlanetsModal from '../components/Modals/PlanetsModal'
 
 const Container = styled.div`
   box-shadow: 1px 3px 13px rgba(255,255,255,0.5), -1px -4px 11px rgba(255,255,255,0.5);
@@ -25,33 +26,43 @@ const CardBody = styled.div`
   }
 `
 
-const FilmItem = (props) => {
+class FilmItem extends React.Component {
 
-
-  const showPlanet = () => {
-    // console.log(props.film);
-    props.showPlanet(props.film)
+  state = {
+    show: false
   }
-  return(
-    
-    <Container className="card mb-5">
-      <div className="row no-gutters">
-        <div className="col-md-4">
-          IMAGE
+
+  showModal = () => {
+    this.setState({ show: true })
+    this.props.showPlanet(this.props.film)
+  }
+
+  hideModal = () => {
+    this.setState({ show: false })
+  }
+
+  render() {
+    return(
+      <Container className="card mb-5">
+        <div className="row no-gutters">
+          <div className="col-md-4">
+            IMAGE
+          </div>
+          <div className="col-md-8">
+            <CardBody className="card-body">
+              <h5 className="card-title">{this.props.film.title}</h5>
+              <p className="card-text">Director: {this.props.film.director}</p>
+              <p className="card-text">Producer: {this.props.film.producer}</p>
+              <p className="card-text">Release: {this.props.film.release_date}</p>
+              <p className="card-text">Descrition: {this.props.film.opening_crawl}</p>
+              <button className="btn btn-primary" onClick={this.showModal} data-toggle="modal" data-target="#exampleModalCenter" >Planets</button>
+              <PlanetsModal show={this.state.show} onHide={this.hideModal} />
+            </CardBody>
+          </div>
         </div>
-        <div className="col-md-8">
-          <CardBody className="card-body">
-            <h5 className="card-title">{props.film.title}</h5>
-            <p className="card-text">Director: {props.film.director}</p>
-            <p className="card-text">Producer: {props.film.producer}</p>
-            <p className="card-text">Release: {props.film.release_date}</p>
-            <p className="card-text">Descrition: {props.film.opening_crawl}</p>
-            <button className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" >Planets</button>
-          </CardBody>
-        </div>
-      </div>
-    </Container>
-  )
+      </Container>
+    )
+  }  
 }
 
 FilmItem.propTypes = {

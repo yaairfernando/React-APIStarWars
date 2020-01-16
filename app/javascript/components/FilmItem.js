@@ -3,6 +3,14 @@ import styled from 'styled-components';
 import propTypes from 'prop-types';
 import PlanetsModal from '../components/Modals/PlanetsModal'
 import PeopleModal from '../components/Modals/PeopleModal'
+import ANewHope from './img/ANewHope.png';
+import AttackoftheClones from './img/AttackoftheClones.jpeg';
+import ReturnoftheJedi from './img/ReturnoftheJedi.jpeg'
+import RevengeoftheSith from './img/RevengeoftheSith.png'
+import TheEmpireStrikesBack from './img/TheEmpireStrikesBack.jpeg'
+import TheForceAwakens from './img/TheForceAwakens.png'
+import ThePhantomMenace from './img/ThePhantomMenace.png'
+import ImageFilm from './ImageFilm';
 
 const Container = styled.div`
   box-shadow: 1px 3px 13px rgba(255,255,255,0.5), -1px -4px 11px rgba(255,255,255,0.5);
@@ -41,6 +49,16 @@ const Button = styled.button`
   }
 `
 
+const pictures = [
+  { pic: ANewHope },
+  { pic: AttackoftheClones },
+  { pic: ReturnoftheJedi },
+  { pic: RevengeoftheSith },
+  { pic: TheEmpireStrikesBack },
+  { pic: TheForceAwakens },
+  { pic: ThePhantomMenace }
+]
+
 class FilmItem extends React.Component {
 
   state = {
@@ -64,7 +82,7 @@ class FilmItem extends React.Component {
     this.setState({ planetsArr });
   }
 
-  showModalP = () => {
+  componentDidMount () {
     let planetsArr = [];
     this.props.planets.map((planet) => {
       this.props.film.planets.map((film) => {
@@ -75,6 +93,9 @@ class FilmItem extends React.Component {
     })
     console.log(planetsArr)
     this.setState({ planetsArr });
+  }
+
+  showModalP = () => {
     this.setState({ showP: true })
     let peopleArr = [];
     this.state.planetsArr.map((resident) => {
@@ -103,11 +124,19 @@ class FilmItem extends React.Component {
   
 
   render() {
+    const title = this.props.film.title.replace(/\s+/g, '')
     return(
       <Container className="card mb-5">
         <div className="row no-gutters">
           <div className="col-md-4">
-            IMAGE
+            { pictures.map((pic, idx) => {
+              console.log(title)
+              console.log(pic.pic)
+              if(pic.pic.includes(title)) {
+                // return "YESS"
+                return <ImageFilm key={idx} picture={pic.pic} />
+              }
+            })}
           </div>
           <div className="col-md-8">
             <CardBody className="card-body">

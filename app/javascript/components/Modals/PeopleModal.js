@@ -24,7 +24,7 @@ const PeopleModal = (props) => {
         <Modal.Body>
           <div className="container-fluid">
           <div className="row">
-            {People.length === 0 ? <div className="mt-5 mb-5"><h5 className="text-center">There are no planets to display for this film!!</h5></div> : People}
+            {People.length === 0 ? <div className="mt-5 mb-5"><h5 className="text-center">There are no recidents to display for this film!!</h5></div> : People}
 
           </div>
           </div>

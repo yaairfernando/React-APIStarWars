@@ -16,17 +16,16 @@ const Card = styled.div`
 class PeopleItem extends React.Component {
   
   render() {
+    console.log(this.props)
     return (
       <div className="col-md-6 col-sm-12">
         <Card>
           <h4>{this.props.resident.name}</h4>
-          <p>Climate: {this.props.resident.gender}</p>
-          {/* <p>Diameter: {this.props.resident.}</p>
-          <p>Gravity: {this.props.resident.gravity}</p>
-          <p>Population: {this.props.resident.population}</p>
-          <p>Rotation Period: {this.props.resident.rotation_period}</p>
-          <p>Surface Water: {this.props.resident.surface_water}</p>
-          <p>Terrain: {this.props.resident.terrain}</p> */}
+          <p>Gender: {this.props.resident.gender}</p>
+          <p>Height: {this.props.resident.height}</p>
+          <p>Skin Color: {this.props.resident.skin_color}</p>
+          <p>Hair Color: {this.props.resident.hair_color}</p>
+          <p>Eye Color: {this.props.resident.eye_color}</p>
         </Card>
       </div>
     )

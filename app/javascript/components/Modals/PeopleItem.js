@@ -16,7 +16,6 @@ const Card = styled.div`
 class PeopleItem extends React.Component {
   
   render() {
-    console.log(this.props)
     return (
       <div className="col-md-6 col-sm-12">
         <Card>

@@ -4,7 +4,6 @@ import FilmItem from '../components/FilmItem';
 
 class Films extends Component {
   render() {
-    console.log(this.props.people);
     const Films = this.props.films.map((film, indx) => {
       return <FilmItem key={indx} film={film} planets={this.props.planets} people={this.props.people} />
     })

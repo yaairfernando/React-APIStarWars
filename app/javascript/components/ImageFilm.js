@@ -7,7 +7,6 @@ const Image = styled.img`
 `
 
 const ImageFilm = (props) => {
-  console.log(props)
   return(
     <Image src={props.picture} alt="Logo" />
   )

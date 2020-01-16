@@ -70,16 +70,6 @@ class FilmItem extends React.Component {
 
   showModal = () => {
     this.setState({ show: true })
-    let planetsArr = [];
-    this.props.planets.map((planet) => {
-      this.props.film.planets.map((film) => {
-        if (planet.url === film){
-          planetsArr.push(planet)
-        }
-      })
-    })
-    console.log(planetsArr)
-    this.setState({ planetsArr });
   }
 
   componentDidMount () {
@@ -91,7 +81,6 @@ class FilmItem extends React.Component {
         }
       })
     })
-    console.log(planetsArr)
     this.setState({ planetsArr });
   }
 
@@ -107,8 +96,6 @@ class FilmItem extends React.Component {
         })
       })
     })
-    console.log(peopleArr);
-    console.log(this.props.people);
     this.setState({ peopleArr });
   }
 
@@ -130,10 +117,7 @@ class FilmItem extends React.Component {
         <div className="row no-gutters">
           <div className="col-md-4">
             { pictures.map((pic, idx) => {
-              console.log(title)
-              console.log(pic.pic)
               if(pic.pic.includes(title)) {
-                // return "YESS"
                 return <ImageFilm key={idx} picture={pic.pic} />
               }
             })}

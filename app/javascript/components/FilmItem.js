@@ -27,6 +27,20 @@ const CardBody = styled.div`
   }
 `
 
+const Button = styled.button`
+  color: #fff;
+  background-color: #880E4F;
+  border: 2px solid #fff;
+  margin: 0px 10px;
+  padding: 5px 28px;
+  transition: all 0.4s ease;
+
+  &:hover {
+    background: transparent;
+    cursor: pointer
+  }
+`
+
 class FilmItem extends React.Component {
 
   state = {
@@ -102,8 +116,8 @@ class FilmItem extends React.Component {
               <p className="card-text">Producer: {this.props.film.producer}</p>
               <p className="card-text">Release: {this.props.film.release_date}</p>
               <p className="card-text">Descrition: {this.props.film.opening_crawl}</p>
-              <button className="btn btn-primary" onClick={this.showModal} data-toggle="modal" data-target="#exampleModalCenter" >Planets</button>
-              <button className="btn btn-primary" onClick={this.showModalP} data-toggle="modal" data-target="#exampleModalCenter" >People</button>
+              <Button className="" onClick={this.showModal} data-toggle="modal" data-target="#exampleModalCenter" >Planets</Button>
+              <Button className="" onClick={this.showModalP} data-toggle="modal" data-target="#exampleModalCenter" >People</Button>
               <PeopleModal show={this.state.showP} onHide={this.hideModalP} people={this.state.peopleArr} title={this.props.film.title} />
               <PlanetsModal show={this.state.show} onHide={this.hideModal} planets={this.state.planetsArr} title={this.props.film.title} />
             </CardBody>

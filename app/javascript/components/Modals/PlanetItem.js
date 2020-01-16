@@ -13,21 +13,23 @@ const Card = styled.div`
   }
 `
 
-const PlanetItem = ({planet}) => {
-  return (
-    <div className="col-md-6 col-sm-12">
-      <Card>
-        <h4>{planet.name}</h4>
-        <p>Climate: {planet.climate}</p>
-        <p>Diameter: {planet.diameter}</p>
-        <p>Gravity: {planet.gravity}</p>
-        <p>Population: {planet.population}</p>
-        <p>Rotation Period: {planet.rotation_period}</p>
-        <p>Surface Water: {planet.surface_water}</p>
-        <p>Terrain: {planet.terrain}</p>
-      </Card>
-    </div>
-  )
+class PlanetItem extends React.Component {  
+  render() {
+    return (
+      <div className="col-md-6 col-sm-12">
+        <Card>
+          <h4>{this.props.planet.name}</h4>
+          <p>Climate: {this.props.planet.climate}</p>
+          <p>Diameter: {this.props.planet.diameter}</p>
+          <p>Gravity: {this.props.planet.gravity}</p>
+          <p>Population: {this.props.planet.population}</p>
+          <p>Rotation Period: {this.props.planet.rotation_period}</p>
+          <p>Surface Water: {this.props.planet.surface_water}</p>
+          <p>Terrain: {this.props.planet.terrain}</p>
+        </Card>
+      </div>
+    )
+  }
 };
 
 export default PlanetItem;

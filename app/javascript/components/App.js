@@ -10,17 +10,20 @@ class App extends Component {
   state = {
     films: [],
     planets: [],
-    films_planets: []
+    people: []
   }
 
   componentDidMount = async () => {
     const getFilms = await FilmsApi.post('/getFilms')
     const getPlanets = await FilmsApi.post('/getPlanets')
+    const getPeople = await FilmsApi.post('/getPeoples')
+    const people = getPeople.data.contextWrites.to[0].results
     const planets = getPlanets.data.contextWrites.to[0].results
     const films = getFilms.data.contextWrites.to[0].results
     this.setState({
       films,
-      planets
+      planets,
+      people
     });
   }
 
@@ -29,7 +32,7 @@ class App extends Component {
       return <Loader />
     } 
     if (this.state.films) {
-      return <Films films={this.state.films} planets={this.state.planets} />
+      return <Films films={this.state.films} planets={this.state.planets} people={this.state.people} />
     }
   }
 

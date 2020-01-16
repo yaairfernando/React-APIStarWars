@@ -1,11 +1,11 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import PlanetItem from '../Modals/PlanetItem';
+import PeopleItem from '../Modals/PeopleItem';
 
-const PlanetsModal = (props) => {
-  const Planets = props.planets.map((planet) => {
-    return <PlanetItem key={planet.orbital_period} planet={planet} people={props.people} />
+const PeopleModal = (props) => {
+  const People = props.people.map((resident) => {
+    return <PeopleItem key={resident.height} resident={resident} />
   })
 
   return(
@@ -24,7 +24,7 @@ const PlanetsModal = (props) => {
         <Modal.Body>
           <div className="container-fluid">
           <div className="row">
-            {Planets.length === 0 ? <div className="mt-5 mb-5"><h5 className="text-center">There are no planets to display for this film!!</h5></div> : Planets}
+            {People.length === 0 ? <div className="mt-5 mb-5"><h5 className="text-center">There are no planets to display for this film!!</h5></div> : People}
 
           </div>
           </div>
@@ -37,4 +37,4 @@ const PlanetsModal = (props) => {
   );
 };
 
-export default PlanetsModal;
+export default PeopleModal;

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import propTypes from 'prop-types';
 import PlanetsModal from '../components/Modals/PlanetsModal'
+import PeopleModal from '../components/Modals/PeopleModal'
 
 const Container = styled.div`
   box-shadow: 1px 3px 13px rgba(255,255,255,0.5), -1px -4px 11px rgba(255,255,255,0.5);
@@ -30,7 +31,9 @@ class FilmItem extends React.Component {
 
   state = {
     show: false,
-    planetsArr: []
+    showP: false,
+    planetsArr: [],
+    peopleArr: []
   }
 
   showModal = () => {
@@ -43,11 +46,44 @@ class FilmItem extends React.Component {
         }
       })
     })
+    console.log(planetsArr)
     this.setState({ planetsArr });
   }
 
+  showModalP = () => {
+    let planetsArr = [];
+    this.props.planets.map((planet) => {
+      this.props.film.planets.map((film) => {
+        if (planet.url === film){
+          planetsArr.push(planet)
+        }
+      })
+    })
+    console.log(planetsArr)
+    this.setState({ planetsArr });
+    this.setState({ showP: true })
+    let peopleArr = [];
+    this.state.planetsArr.map((resident) => {
+      resident.residents.map((res) => {
+      this.props.people.map((person) => {
+          if (person.url === res) {
+            peopleArr.push(person);
+          }
+        })
+      })
+    })
+    console.log(peopleArr);
+    console.log(this.props.people);
+    this.setState({ peopleArr });
+  }
+
+
   hideModal = () => {
     this.setState({ show: false })
+  }
+
+  hideModalP = () => {
+    this.setState({ showP: false })
   }
 
   
@@ -67,6 +103,8 @@ class FilmItem extends React.Component {
               <p className="card-text">Release: {this.props.film.release_date}</p>
               <p className="card-text">Descrition: {this.props.film.opening_crawl}</p>
               <button className="btn btn-primary" onClick={this.showModal} data-toggle="modal" data-target="#exampleModalCenter" >Planets</button>
+              <button className="btn btn-primary" onClick={this.showModalP} data-toggle="modal" data-target="#exampleModalCenter" >People</button>
+              <PeopleModal show={this.state.showP} onHide={this.hideModalP} people={this.state.peopleArr} title={this.props.film.title} />
               <PlanetsModal show={this.state.show} onHide={this.hideModal} planets={this.state.planetsArr} title={this.props.film.title} />
             </CardBody>
           </div>

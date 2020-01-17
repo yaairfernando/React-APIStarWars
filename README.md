@@ -79,8 +79,6 @@ Rails 6.0.2.1
 
 ### Installing
 
-Run `bundle install` to install all project dependencies.
-
 <p>Install the following to get this project running in your machine:</p>
 
 ### Instructions
@@ -130,10 +128,11 @@ user@pc:~$ rails db:migrate
 ### Serve Project
 
 Open two tabs on the console on the same folder React-APIStarWars
+
 Start the local server with rails:
 
 ```Shell
-user@pc:~$ npm start
+user@pc:~$ rails s
 ```
 
 Start the local server with react:

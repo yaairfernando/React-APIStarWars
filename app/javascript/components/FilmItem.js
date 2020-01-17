@@ -49,6 +49,26 @@ const Button = styled.button`
   }
 `
 
+const Div = styled.div`  
+  border-right: 2px solid #EDEC51;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    background: linear-gradient(to bottom right, rgba(255, 0, 0, 0.7) 15%, rgba(0, 0, 0, 1));
+  }
+`
+
+const Row = styled.div`
+  border-radius: 53px 0 0 70px;
+  padding: 0px;
+  border: 2px solid;
+`
+
 const pictures = [
   { pic: ANewHope },
   { pic: AttackoftheClones },
@@ -114,14 +134,14 @@ class FilmItem extends React.Component {
     const title = this.props.film.title.replace(/\s+/g, '')
     return(
       <Container className="card mb-5">
-        <div className="row no-gutters">
-          <div className="col-md-4">
+        <Row className="row no-gutters">
+          <Div className="col-md-4">
             { pictures.map((pic, idx) => {
               if(pic.pic.includes(title)) {
                 return <ImageFilm key={idx} picture={pic.pic} />
               }
             })}
-          </div>
+          </Div>
           <div className="col-md-8">
             <CardBody className="card-body">
               <h5 className="card-title">{this.props.film.title}</h5>
@@ -135,7 +155,7 @@ class FilmItem extends React.Component {
               <PlanetsModal show={this.state.show} onHide={this.hideModal} planets={this.state.planetsArr} title={this.props.film.title} />
             </CardBody>
           </div>
-        </div>
+        </Row>
       </Container>
     )
   }  

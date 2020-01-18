@@ -46,14 +46,29 @@ const Container = styled.div`
   }
 `
 
+const H1 = styled.h1`
+  & > a {
+    color: #fff;
+
+    &:hover {
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+`
+
 const Header = () => {
   return (
     <Container className="sticky-top mb-5">
       <ul className="d-flex justify-content-center align-items-center">
         
           <Link to="/films" >Films</Link>
-        
-        <h1 className="ml-5 mr-5">Star Wars</h1>
+
+          <Link to="/" >
+            <h1>Star Wars</h1>
+          </Link>
+
                   
         <Link to="/actors" >Actors</Link>
         

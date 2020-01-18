@@ -7,14 +7,6 @@ import Loader from '../components/Loader';
 import Header from '../components/Header';
 
 class App extends Component {
-  // renderContent() {
-  //   if (this.state.films.length === 0) {
-  //     return <Loader />
-  //   } 
-  //   if (this.state.films) {
-  //     return <Films films={this.state.films} planets={this.state.planets} people={this.state.people} />
-  //   }
-  // }
   state = {
     films: [],
     planets: [],
@@ -29,6 +21,8 @@ class App extends Component {
     const planets = getPlanets.data.contextWrites.to[0].results
     const films = getFilms.data.contextWrites.to[0].results
     console.log("MOunting")
+    console.log(films)
+    console.log(planets);
     this.setState({
       films,
       planets,
@@ -41,34 +35,31 @@ class App extends Component {
     const films = (props) => {
       return <Films films={this.state.films} planets={this.state.planets} people={this.state.people} />
     }
-    const actors = (props) => {
-      return <Actors films={this.state.films} planets={this.state.planets} people={this.state.people} />
-    }
     const routes = [
       {
         path: '/films',
-        component: films
+        component: films,
+        key: 1
       },
       {
         path: '/actors',
-        component: actors
+        component: actors,
+        key: 2
       }
     ]
+    const actors = (props) => {
+      return <Actors films={this.state.films} planets={this.state.planets} people={this.state.people} />
+    }
     return(
       <div>
         <BrowserRouter>
           <div>
             <Header />
-            {routes.map(({ path, component: C}) =>(
-              <Route path={path} render={C} />
+            {routes.map(({ path, component: C, key }) =>(
+              <Route key={key} path={path} render={C} />
             ))}
-            {/* // <Route path="/films" component={Films} />
-            // <Route path="/actors" component={Actors} /> */}
           </div>
         </BrowserRouter>
-        {/* <div className="mt-5">
-          {this.renderContent()}
-        </div> */}
       </div>
     )
   };

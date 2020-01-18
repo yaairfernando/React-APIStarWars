@@ -37,7 +37,6 @@ class SeachBar extends Component {
 
   onSubmit = (e) => {
     e.preventDefault()
-    console.log(this.props.species);
     let search_results = []
     this.props.species.map((specie) => {
       if(specie.name.toUpperCase().includes(this.state.search.toUpperCase())){

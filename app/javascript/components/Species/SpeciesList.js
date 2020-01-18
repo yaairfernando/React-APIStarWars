@@ -16,7 +16,11 @@ class SpeciesList extends Component {
     }
   }
     return (
-      <div>{renderContent()}</div>
+      <div className="row mt-3">
+        <div className="col-md-6 col-sm-12">
+        {renderContent()}</div>
+         <div className="col-md-6 col-sm-12"></div>
+      </div>
     )
   };
 };

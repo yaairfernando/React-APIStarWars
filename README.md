@@ -39,7 +39,7 @@
 
 ## About The Project
 
-![Screenshot Image](app/assets/images/logoRepo.png) 
+![Screenshot Image](app/assets/images/logoRepositorio.png) 
 
 ### Built With
 The project was developed using the following technologies:
@@ -47,6 +47,7 @@ The project was developed using the following technologies:
 - [Redux](https://github.com/reduxjs/redux)
 - [React-Redux](https://github.com/reduxjs/react-redux)
 - [Redux-thunk](https://github.com/reduxjs/redux-thunk)
+- [React-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 - [JSX](https://reactjs.org/docs/introducing-jsx.html)
 - [AXIOS](https://github.com/axios/axios)
 - [BOOTSTRAP](https://getbootstrap.com/docs/4.3/getting-started/introduction/)

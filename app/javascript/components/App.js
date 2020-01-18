@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Films from './Films';
 import FilmsApi from '../components/api/FilmsApi';
 import Loader from '../components/Loader';
@@ -8,13 +8,18 @@ import styled from 'styled-components';
 
 const PageOne = () => {
   return(
-    <div>PageOne</div>
+    <div>PageOne
+
+      <Link to="/pagetwo">Page two!!</Link>
+    </div>
   )
 }
 
 const PageTwo = () => {
   return(
-    <div>PageTwo</div>
+    <div>PageTwo
+      <Link to="/">Page onee!!</Link>
+    </div>
   )
 }
 

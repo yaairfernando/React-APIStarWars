@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   font-size: 35px;
@@ -12,23 +13,34 @@ const Container = styled.div`
   & > ul {
     list-style: none;
     margin: 0;
-    height: 120px;
+    border-bottom: 1px solid #fff;
+    height: 90px;
 
-    & > li {
-      font-size: 13px;
-      padding: 5px 12px;
-      background: #fff;
-      color: black;
-      margin: 0 5px;
-      border-radius: 4px;
-      transition: all 0.2s ease-in-out;
+    & > a {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 80px;
+      border: 1px solid #fff;
+      border-top: none;
+      border-bottom: none;
+      font-size: 20px;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 3.5px;
+      font-weight: 100;
+      background: linear-gradient(to bottom, #e4e4e4 0%, #fff 100%);
+      background-position: 0 50%;
+      background-repeat: repeat-x;
+      background-size: 0 0;
+      transition: background-size 0.25s;
 
       &:hover {
-        background: black;
-        color: #fff;
         cursor: pointer;
-        border: 1px solid #fff;
-        box-shadow: 1px 1px 2px #fff;
+        text-decoration: none;
+        background-size: 4px 90px;
+        color: black;
       }
     }
   }
@@ -36,11 +48,15 @@ const Container = styled.div`
 
 const Header = () => {
   return (
-    <Container>
+    <Container className="sticky-top mb-5">
       <ul className="d-flex justify-content-center align-items-center">
-        <li>Films</li>
+        
+          <Link to="/films" >Films</Link>
+        
         <h1 className="ml-5 mr-5">Star Wars</h1>
-        <li>Actors</li>
+                  
+        <Link to="/actors" >Actors</Link>
+        
       </ul>
     </Container>
   );

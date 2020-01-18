@@ -1,32 +1,34 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
-import Films from './Films';
-import Actors from './Actors';
+import Species from '../components/Species/Species';
+import Films from '../components/Films/Films'
 import FilmsApi from '../components/api/FilmsApi';
-import Loader from '../components/Loader';
-import Header from '../components/Header';
+import Loader from '../components/Util/Loader';
+import Header from '../components/Util/Header';
 
 class App extends Component {
   state = {
     films: [],
     planets: [],
-    people: []
+    people: [],
+    species: []
   }
 
   componentDidMount = async () => {
     const getFilms = await FilmsApi.post('/getFilms')
     const getPlanets = await FilmsApi.post('/getPlanets')
     const getPeople = await FilmsApi.post('/getPeoples')
+    const getSpecies = await FilmsApi.post('/getSpecies')
+    const species = getSpecies.data.contextWrites.to[0].results
     const people = getPeople.data.contextWrites.to[0].results
     const planets = getPlanets.data.contextWrites.to[0].results
     const films = getFilms.data.contextWrites.to[0].results
     console.log("MOunting")
-    console.log(films)
-    console.log(planets);
     this.setState({
       films,
       planets,
-      people
+      people,
+      species
     });
   }
 
@@ -35,6 +37,9 @@ class App extends Component {
     const films = (props) => {
       return <Films films={this.state.films} planets={this.state.planets} people={this.state.people} />
     }
+    const species = (props) => {
+      return <Species species={this.state.species} />
+    }
     const routes = [
       {
         path: '/films',
@@ -42,14 +47,11 @@ class App extends Component {
         key: 1
       },
       {
-        path: '/actors',
-        component: actors,
+        path: '/species',
+        component: species,
         key: 2
       }
     ]
-    const actors = (props) => {
-      return <Actors films={this.state.films} planets={this.state.planets} people={this.state.people} />
-    }
     return(
       <div>
         <BrowserRouter>

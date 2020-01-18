@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 
-class Actors extends Component {
+class Species extends Component {
   render() {
+  console.log(this.props)
     return(
       <div className="container pr-4 pl-4">
-        Actorssssssssssss
+        Speciessssssssssss
       </div>
     )
   }
 }
 
-export default Actors;
+export default Species;

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import FilmItem from '../components/FilmItem';
-import Loader from '../components/Loader';
-import FilmsApi from '../components/api/FilmsApi';
+import Loader from '../Util/Loader';
+import FilmItem from './FilmItem';
 
 class Films extends Component {
 

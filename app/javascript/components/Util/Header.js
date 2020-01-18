@@ -70,7 +70,7 @@ const Header = () => {
           </Link>
 
                   
-        <Link to="/actors" >Actors</Link>
+        <Link to="/species" >Species</Link>
         
       </ul>
     </Container>

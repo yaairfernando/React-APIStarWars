@@ -1,9 +1,23 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import Films from './Films';
 import FilmsApi from '../components/api/FilmsApi';
 import Loader from '../components/Loader';
 import Header from '../components/Header';
 import styled from 'styled-components';
+
+const PageOne = () => {
+  return(
+    <div>PageOne</div>
+  )
+}
+
+const PageTwo = () => {
+  return(
+    <div>PageTwo</div>
+  )
+}
+
 
 class App extends Component {
 
@@ -40,6 +54,12 @@ class App extends Component {
     return(
       <div>
         <Header />
+        <BrowserRouter>
+          <div>
+            <Route path="/" exact component={PageOne} />
+            <Route path="/pagetwo" component={PageTwo} />
+          </div>
+        </BrowserRouter>
         <div className="mt-5">
           {this.renderContent()}
         </div>

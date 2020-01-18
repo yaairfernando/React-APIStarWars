@@ -31,16 +31,24 @@ const Body = styled.div`
 
 class SeachBar extends Component {
   state = {
-    search: ''
+    search: '',
+    species: []
   }
 
   onSubmit = (e) => {
     e.preventDefault()
-    console.log(e);
+    console.log(this.props.species);
+    let search_results = []
+    this.props.species.map((specie) => {
+      if(specie.name.toUpperCase().includes(this.state.search.toUpperCase())){
+        search_results.push(specie)
+      }
+    })
+
+    this.props.onSubmit(search_results)
   }
 
   render() {
-    console.log(this.state.search)
     return (
     <Card>
       <H5 className="card-header text-center py-4">

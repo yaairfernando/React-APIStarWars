@@ -6,9 +6,10 @@ class SpeciesList extends Component {
   console.log(this.props.species)
 
   const renderContent = () => {
-    if(species.length === 0) {
+    if(this.props.species.length === 0) {
       return <div>There are no species that matches your search. Try with a different combination of words!!</div>
-    }else {
+    }
+    if(this.props.species) {
       return this.props.species.map((specie) =>{
         return <SpecieItem key={specie.average_height} specie={specie} />
       })

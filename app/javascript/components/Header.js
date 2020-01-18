@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   font-size: 35px;
@@ -38,9 +39,13 @@ const Header = () => {
   return (
     <Container>
       <ul className="d-flex justify-content-center align-items-center">
-        <li>Films</li>
+        <li>
+          <Link to="/films" >Films</Link>
+        </li>
         <h1 className="ml-5 mr-5">Star Wars</h1>
-        <li>Actors</li>
+        <li>          
+        <Link to="/actors" >Actors</Link>
+        </li>
       </ul>
     </Container>
   );

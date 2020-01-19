@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import SpecieItem from './SpecieItem';
+import styled from 'styled-components'
+
+const Div = styled.div`
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+`
 
 class SpeciesList extends Component {
   render() {
@@ -7,7 +14,7 @@ class SpeciesList extends Component {
 
   const renderContent = () => {
     if(this.props.species.length === 0) {
-      return <div>There are no species that matches your search. Try with a different combination of words!!</div>
+      return <Div>There are so many species that you'll like. Try look for one!!</Div>
     }
     if(this.props.species) {
       return this.props.species.map((specie) =>{

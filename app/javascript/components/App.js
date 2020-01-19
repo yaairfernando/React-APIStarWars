@@ -5,6 +5,15 @@ import Films from '../components/Films/Films'
 import FilmsApi from '../components/api/FilmsApi';
 import Loader from '../components/Util/Loader';
 import Header from '../components/Util/Header';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+ 
+library.add(fab, faCheckSquare, faCoffee)
+export function FontAwesomeIcon(props) {
+  return <i className="fas" />
+}
 
 class App extends Component {
   state = {

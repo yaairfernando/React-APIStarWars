@@ -29,6 +29,13 @@ const pictures = [
 const Card = styled.div`
   border: none !important;
   background: transparent !important;
+  transition: all 0.4s ease-in-out
+
+  &:hover {
+    border: 1px solid #fff;
+    box-shadow: 1px 1px 5px rgba(255,255,255,0.6);
+    transform: scale(1.04);
+  }
 `
 
 const Image = styled.div`
@@ -43,6 +50,18 @@ const Body = styled.div`
 
   & > p {
     margin: 0;
+  }
+`
+const Button = styled.button`
+  border: none;
+  background: transparent;
+  position: absolute;
+  right: 52px;
+  top: 10px;
+  width: 63px;
+
+  & > svg {
+    font-size: 30px;
   }
 `
 
@@ -68,9 +87,10 @@ class SpecieItem extends Component {
               <h5 className="card-title">{name}</h5>
               <p className="card-text">Language: {language}</p>
               <p className="card-text">Skin Color: {skin_colors}</p>
-              <button>
+              
+              <Button>
                 <FontAwesomeIcon icon="check-square" />
-              </button>
+              </Button>
             </Body>
           </div>
         </div>

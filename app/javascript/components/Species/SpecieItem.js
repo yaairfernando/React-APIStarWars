@@ -53,22 +53,27 @@ const Body = styled.div`
   }
 `
 const Button = styled.button`
-  border: none;
-  background: transparent;
+  border: 1px solid #fff;
+  background: #880E4F;
   position: absolute;
+  color: #fff;
+  border-radius: 4px;
   right: 52px;
   top: 10px;
   width: 63px;
-
-  & > svg {
-    font-size: 30px;
-  }
 `
 
 class SpecieItem extends Component {
+
+  onClick = (e) => {
+    e.preventDefault();
+    // console.log(e.target.getAttribute('name'));
+    console.log(e.target.getAttribute('data'))
+  }
+
   render() {
-    console.log(this.props.specie)
-    const { name, language, skin_colors}  = this.props.specie
+    const { name, language, skin_colors }  = this.props.specie
+    console.log(this.props.dataId)
     let nameSpecie = name.replace(/\s+/g, '')
     return(
        <Card className="card mb-2">
@@ -88,8 +93,8 @@ class SpecieItem extends Component {
               <p className="card-text">Language: {language}</p>
               <p className="card-text">Skin Color: {skin_colors}</p>
               
-              <Button>
-                <FontAwesomeIcon icon="check-square" />
+              <Button onClick={this.onClick} data={this.props.dataId}>
+                ADD
               </Button>
             </Body>
           </div>

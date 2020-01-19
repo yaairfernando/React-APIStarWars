@@ -17,8 +17,8 @@ class SpeciesList extends Component {
       return <Div>There are so many species that you'll like. Try look for one!!</Div>
     }
     if(this.props.species) {
-      return this.props.species.map((specie) =>{
-        return <SpecieItem key={specie.average_height} specie={specie} />
+      return this.props.species.map((specie, indx) =>{
+        return <SpecieItem key={indx} dataId={indx + 1} specie={specie} />
       })
     }
   }

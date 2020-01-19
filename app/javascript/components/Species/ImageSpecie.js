@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Image = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 63%;
+  height: 85%;
+  border-radius: 50%;
 `
 
 const ImageSpecie = (props) => {

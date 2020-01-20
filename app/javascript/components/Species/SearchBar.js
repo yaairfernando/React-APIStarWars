@@ -43,8 +43,13 @@ class SeachBar extends Component {
         search_results.push(specie)
       }
     })
-
-    this.props.onSubmit(search_results)
+    let i = 0;
+    let search_res = search_results.map((search) => {
+      let obj = Object.assign({}, search);
+      obj.id = i += 1;
+      return obj;
+    })
+    this.props.onSubmit(search_res)
   }
 
   render() {

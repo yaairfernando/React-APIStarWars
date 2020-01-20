@@ -61,14 +61,21 @@ const Button = styled.button`
   right: 52px;
   top: 10px;
   width: 63px;
+
+  &:active,
+  &:focus,
+  &:visited {
+    border-color: #fff !important;
+    outline: none !important;
+  }
 `
 
 class SpecieItem extends Component {
 
   onClick = (e) => {
     e.preventDefault();
+    this.props.onClick(e)
     // console.log(e.target.getAttribute('name'));
-    console.log(e.target.getAttribute('data'))
   }
 
   render() {

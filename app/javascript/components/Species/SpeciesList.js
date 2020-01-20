@@ -9,6 +9,14 @@ const Div = styled.div`
 `
 
 class SpeciesList extends Component {
+
+  onClick = (e) => {
+    console.log(e.target.getAttribute('data'))
+    let id = e.target.getAttribute('data')
+    let currentSpecie = this.props.species.filter(s => s.id === id)
+    console.log(currentSpecie);
+  }
+
   render() {
   console.log(this.props.species)
 
@@ -17,8 +25,8 @@ class SpeciesList extends Component {
       return <Div>There are so many species that you'll like. Try look for one!!</Div>
     }
     if(this.props.species) {
-      return this.props.species.map((specie, indx) =>{
-        return <SpecieItem key={indx} dataId={indx + 1} specie={specie} />
+      return this.props.species.map((specie) =>{
+        return <SpecieItem key={specie.id} dataId={specie.id} specie={specie} onClick={this.onClick} />
       })
     }
   }

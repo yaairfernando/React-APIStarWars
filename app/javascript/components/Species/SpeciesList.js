@@ -10,11 +10,35 @@ const Div = styled.div`
 
 class SpeciesList extends Component {
 
+  state = {
+    favorites: []
+  }
   onClick = (e) => {
-    console.log(e.target.getAttribute('data'))
+    e.preventDefault()
+    // console.log(e.target.getAttribute('data'))
     let id = e.target.getAttribute('data')
-    let currentSpecie = this.props.species.filter(s => s.id === id)
-    console.log(currentSpecie);
+    let currentSpecie = this.props.species.filter(s => s.id == parseInt(id))
+    console.log(currentSpecie[0].name)
+    let currState = this.state.favorites
+    if(currState.length === 0){
+      this.setState({ favorites: [...this.state.favorites, currentSpecie[0]], repeat: false })
+      console.log("First")
+    }
+    if(currState.length > 0){
+      currState.map((curr) => {
+        if(curr.name != currentSpecie.name) {
+          console.log("Different")
+          this.setState({ favorites: [...this.state.favorites, currentSpecie[0]], repeat: false })
+        }
+        if(curr.name === currentSpecie[0].name) {
+          console.log("Equal")
+          this.setState({ repeat: true })
+        }
+      })
+    }
+    // console.log(currentSpecie);
+    console.log(this.state.favorites)
+    
   }
 
   render() {

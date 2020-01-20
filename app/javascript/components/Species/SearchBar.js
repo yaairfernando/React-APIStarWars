@@ -31,8 +31,7 @@ const Body = styled.div`
 
 class SeachBar extends Component {
   state = {
-    search: '',
-    species: []
+    search: ''
   }
 
   onSubmit = (e) => {
@@ -50,6 +49,7 @@ class SeachBar extends Component {
       return obj;
     })
     this.props.onSubmit(search_res)
+    this.setState({ search: '' })
   }
 
   render() {

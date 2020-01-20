@@ -80,7 +80,6 @@ class SpecieItem extends Component {
 
   render() {
     const { name, language, skin_colors }  = this.props.specie
-    console.log(this.props.dataId)
     let nameSpecie = name.replace(/\s+/g, '')
     return(
        <Card className="card mb-2">
@@ -88,7 +87,6 @@ class SpecieItem extends Component {
           <Image className="col-md-4">
             { pictures.map((pic, idx) => {
               if(pic.pic.includes(nameSpecie)) {
-                console.log("YES")
                 return <ImageSpecie key={idx} picture={pic.pic} />
               }
             })}

@@ -12,7 +12,6 @@ class Species extends Component {
   }
 
   handleDelete = (specie) => {
-    console.log(specie);
     let newSpecies = this.state.species.filter(f => f.id !== specie.id)
     this.setState({ species: [...newSpecies] })
   }

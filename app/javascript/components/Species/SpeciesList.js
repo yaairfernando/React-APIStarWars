@@ -22,13 +22,11 @@ class SpeciesList extends Component {
   componentDidMount() {
     let favorites = localStorage.getItem('favorites');
     favorites = JSON.parse(favorites);
-    console.log(favorites);
     this.setState({ favorites })
   }
 
   onClick = (e) => {
     e.preventDefault()
-    // console.log(e.target.getAttribute('data'))
     let id = e.target.getAttribute('data')
     let currentSpecie = this.props.species.filter(s => s.id == parseInt(id))
     let currState = this.state.favorites.filter(f => f.id !== currentSpecie[0].id);
@@ -38,9 +36,6 @@ class SpeciesList extends Component {
   }
 
   render() {
-  console.log(this.state.favorites.length)
-
-
   const renderContent = () => {
     if(this.props.species.length === 0) {
       return <Div>There are so many species that you'll like. Try look for one!!</Div>

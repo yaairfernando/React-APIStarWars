@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ImageSpecie from './ImageSpecie';
 import Dug from '../img/species/Dug.jpg'
 import Ewok from '../img/species/Ewok.jpg'
@@ -75,7 +74,6 @@ class SpecieItem extends Component {
   onClick = (e) => {
     e.preventDefault();
     this.props.onClick(e)
-    // console.log(e.target.getAttribute('name'));
   }
 
   render() {

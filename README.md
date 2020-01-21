@@ -40,6 +40,7 @@
 ## About The Project
 
 ![Screenshot Image](app/assets/images/logoRepositorio.png) 
+![Screenshot Image](app/assets/images/logoRepositorio2.png) 
 
 ### Built With
 The project was developed using the following technologies:
@@ -75,7 +76,7 @@ Also make sure that Rails is installed, but running `rails -v`.
 Example
 ```
 $ rails -v
-Rails 6.0.2.1
+Rails 5.2.4
 ```
 
 ### Installing

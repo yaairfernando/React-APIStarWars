@@ -47,9 +47,12 @@ div.modal-footer button {
   transition: all 0.5s ease;
 }
 
-div.modal-footer button:hover {
+div.modal-footer button:hover,
+div.modal-footer button:active,
+div.modal-footer button:focus,
+div.modal-footer button:visited {
   box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
-  background: #880E4F;
-  color: #fff;
-  border: 2px solid #fff;
+  background: #880E4F !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
 }

@@ -18,30 +18,12 @@ class SpeciesList extends Component {
     // console.log(e.target.getAttribute('data'))
     let id = e.target.getAttribute('data')
     let currentSpecie = this.props.species.filter(s => s.id == parseInt(id))
-    console.log(currentSpecie[0].name)
-    let currState = this.state.favorites
-    if(currState.length === 0){
-      this.setState({ favorites: [...this.state.favorites, currentSpecie[0]], repeat: false })
-      console.log("First")
-    }
-    if(currState.length > 0){
-      currState.map((curr) => {
-        if(curr.name != currentSpecie.name) {
-          console.log("Different")
-          this.setState({ favorites: [...this.state.favorites, currentSpecie[0]], repeat: false })
-        }
-        if(curr.name === currentSpecie[0].name) {
-          console.log("Equal")
-          this.setState({ repeat: true })
-        }
-      })
-    }
-    // console.log(currentSpecie);
-    console.log(this.state.favorites)
-    
+    let currState = this.state.favorites.filter(f => f.id !== currentSpecie[0].id);
+    this.setState({ favorites: [...currState, currentSpecie[0]]})    
   }
 
   render() {
+    console.log(this.state.favorites.length)
   console.log(this.props.species)
 
   const renderContent = () => {

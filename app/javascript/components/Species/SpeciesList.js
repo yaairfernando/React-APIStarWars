@@ -18,6 +18,14 @@ class SpeciesList extends Component {
   state = {
     favorites: []
   }
+
+  componentDidMount() {
+    let favorites = localStorage.getItem('favorites');
+    favorites = JSON.parse(favorites);
+    console.log(favorites);
+    this.setState({ favorites })
+  }
+
   onClick = (e) => {
     e.preventDefault()
     // console.log(e.target.getAttribute('data'))
@@ -25,6 +33,7 @@ class SpeciesList extends Component {
     let currentSpecie = this.props.species.filter(s => s.id == parseInt(id))
     let currState = this.state.favorites.filter(f => f.id !== currentSpecie[0].id);
     this.setState({ favorites: [...currState, currentSpecie[0]]})
+    localStorage.favorites = JSON.stringify(currState)
     this.props.handleDelete(currentSpecie[0])
   }
 

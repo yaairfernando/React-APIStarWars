@@ -97,9 +97,7 @@ class Favorites extends Component {
               <p className="card-text">Language: {language}</p>
               <p className="card-text">Skin Color: {skin_colors}</p>
               
-              <Button onClick={this.onClick} data={this.props.dataId}>
-                ADD
-              </Button>
+
             </Body>
           </div>
         </div>

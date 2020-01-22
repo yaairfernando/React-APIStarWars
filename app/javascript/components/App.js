@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import Species from '../components/Species/Species';
 import Films from '../components/Films/Films'
 import FilmsApi from '../components/api/FilmsApi';
 import Header from '../components/Util/Header';
 import { loginWithGoogle, signOutGoogle } from './Firebase'
  
+function PrivateRoute({path, component, ...rest}) {
+  let user = localStorage.getItem('userInfo')
+  user = JSON.parse(user)
+  if(user && user.displayName) {
+    console.log("YESSS")
+    return <Route path={path} component={component} {...rest} />
+  }else {
+    console.log("NOOO")
+    return <Redirect to="/" {...rest} />
+  }
+}
+
+const home = () => {
+  console.log("homemm")
+  return(
+    <div className="container text-white">HOme</div>
+  )
+}
 
 class App extends Component {
   state = {
@@ -17,6 +35,7 @@ class App extends Component {
     loggedIn: false,
     error: ''
   }
+
 
   componentDidMount = async () => {
     let userInfo = localStorage.getItem('userInfo')
@@ -95,11 +114,6 @@ class App extends Component {
         path: '/films',
         component: films,
         key: 1
-      },
-      {
-        path: '/species',
-        component: species,
-        key: 2
       }
     ]
     return(
@@ -113,8 +127,10 @@ class App extends Component {
               loggedIn={this.state.loggedIn} 
               error={this.state.error} />
             {routes.map(({ path, component: C, key }) =>(
-              <Route key={key} path={path} render={C} />
+              <PrivateRoute key={key} path={path} render={C} />
             ))}
+            <Route exact path='/' component={home} />
+            <Route path='/species' component={species} />
           </div>
         </BrowserRouter>
       </div>

@@ -16,7 +16,7 @@ const Container = styled.div`
     list-style: none;
     margin: 0;
     border-bottom: 1px solid #fff;
-    height: 90px;
+    height: 80px;
 
     & > a {
       height: 100%;
@@ -47,16 +47,31 @@ const Container = styled.div`
     }
   }
 `
+const Btn = styled.button`
+  position: absolute;
+  right: 0;
+  border: none;
+  background: none;
+  color: #fff;
+  border-left: 1px solid #fff;
+  height: 100%;
+  margin: 0px;
+  padding: 0 37px;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1.9px;
+  font-weight: 100;
+  background: linear-gradient(to bottom, #e4e4e4 0%, #fff 100%);
+  background-position: 0 50%;
+  background-repeat: repeat-x;
+  background-size: 0 0;
+  transition: background-size 0.25s;
 
-const H1 = styled.h1`
-  & > a {
-    color: #fff;
-
-    &:hover {
-      color: #fff;
-      text-decoration: none;
-      cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+    text-decoration: none;
+    background-size: 4px 90px;
+    color: black;
   }
 `
 
@@ -77,8 +92,8 @@ const Header = (props) => {
                   
         <Link to="/species" >Species</Link>
         {/* <button onClick={props.onClick}>LogIn</button>  */}
-        {props.loggedIn ? <button onClick={props.signOut}>SignOut</button> : 
-        <button onClick={props.logIn}>LogIn</button> }
+        {props.loggedIn ? <Btn onClick={props.signOut}>SignOut</Btn> : 
+        <Btn onClick={props.logIn}>LogIn</Btn> }
       </ul>
     </Container>
   );

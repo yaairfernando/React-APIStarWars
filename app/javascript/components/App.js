@@ -114,6 +114,11 @@ class App extends Component {
         path: '/films',
         component: films,
         key: 1
+      },
+      {
+        path: '/species',
+        component: species,
+        key: 2
       }
     ]
     return(
@@ -126,11 +131,10 @@ class App extends Component {
               userInfo={this.state.userInfo} 
               loggedIn={this.state.loggedIn} 
               error={this.state.error} />
+            <Route exact path='/' component={home} />
             {routes.map(({ path, component: C, key }) =>(
               <PrivateRoute key={key} path={path} render={C} />
             ))}
-            <Route exact path='/' component={home} />
-            <Route path='/species' component={species} />
           </div>
         </BrowserRouter>
       </div>

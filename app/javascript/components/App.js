@@ -19,17 +19,21 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
+    let userInfo = localStorage.getItem('userInfo')
+    userInfo = JSON.parse(userInfo);
+    console.log(typeof userInfo);
+    userInfo ? this.setState({ loggedIn: true }) : this.setState({ loggedIn: false})
+    this.setState({ userInfo })
+    console.log("Fetching")
     const getFilms = await FilmsApi.post('/getFilms')
     const getPlanets = await FilmsApi.post('/getPlanets')
+    console.log("Almost")
     const getPeople = await FilmsApi.post('/getPeoples')
     const getSpecies = await FilmsApi.post('/getSpecies')
     const species = getSpecies.data.contextWrites.to[0].results
     const people = getPeople.data.contextWrites.to[0].results
     const planets = getPlanets.data.contextWrites.to[0].results
     const films = getFilms.data.contextWrites.to[0].results
-    const userInfo = localStorage.getItem('userInfo')
-    userInfo ? this.setState({ loggedIn: true }) : this.setState({ loggedIn: false})
-    this.setState({ userInfo })
     console.log(userInfo)
     console.log("MOunting")
     this.setState({
@@ -68,6 +72,7 @@ class App extends Component {
 
   
   render() {
+    console.log(this.state);
     const films = (props) => {
       return <Films films={this.state.films} planets={this.state.planets} people={this.state.people} />
     }

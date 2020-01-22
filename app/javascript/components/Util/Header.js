@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { userInfo } from 'os';
 
 
 const Container = styled.div`
@@ -62,6 +63,7 @@ const H1 = styled.h1`
 
 
 const Header = (props) => {
+  // {email, displayName, uid, photoURL } = props.userInfo
   return (
     <Container className="sticky-top mb-5">
       <ul className="d-flex justify-content-center align-items-center">
@@ -74,8 +76,7 @@ const Header = (props) => {
 
                   
         <Link to="/species" >Species</Link>
-          <button onClick={props.onClick}>LogIn</button>
-          <button>SignOut</button>
+        {props.loggedIn ? <button onClick={props.onClick}>LogIn</button> : <button onClick={props.onClick}>SignOut</button> }
       </ul>
     </Container>
   );

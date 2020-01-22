@@ -14,7 +14,8 @@ class App extends Component {
     people: [],
     species: [],
     userInfo: {},
-    loggedIn: false
+    loggedIn: false,
+    error: ''
   }
 
   componentDidMount = async () => {
@@ -85,7 +86,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <Header onClick={this.onClick} />
+            <Header onClick={this.onClick} userInfo={this.state.userInfo} loggedIn={this.state.loggedIn} error={this.state.error} />
             {routes.map(({ path, component: C, key }) =>(
               <Route key={key} path={path} render={C} />
             ))}

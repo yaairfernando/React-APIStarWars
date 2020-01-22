@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { userInfo } from 'os';
-
 
 const Container = styled.div`
   font-size: 35px;
@@ -79,6 +77,17 @@ const Btn = styled.button`
 
 const Header = (props) => {
   // {email, displayName, uid, photoURL } = props.userInfo
+  const userInfo = () => {
+    if(props.loggedIn) {
+      return (
+        <div>
+          <h5>{props.userInfo.displayName}</h5>
+          <small>{props.userInfo.email}</small>
+          <img src={props.userInfo.photoURL} />
+        </div>
+      )
+    }
+  }
   return (
     <Container className="sticky-top mb-5">
       <ul className="d-flex justify-content-center align-items-center">
@@ -95,6 +104,9 @@ const Header = (props) => {
         {props.loggedIn ? <Btn onClick={props.signOut}>SignOut</Btn> : 
         <Btn onClick={props.logIn}>LogIn</Btn> }
       </ul>
+      <div>
+      {userInfo()}
+    </div>
     </Container>
   );
 };

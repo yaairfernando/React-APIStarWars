@@ -4,7 +4,7 @@ import Species from '../components/Species/Species';
 import Films from '../components/Films/Films'
 import FilmsApi from '../components/api/FilmsApi';
 import Header from '../components/Util/Header';
-import { loginWithGoogle } from './Firebase'
+import { loginWithGoogle, signOutGoogle } from './Firebase'
  
 
 class App extends Component {
@@ -61,13 +61,24 @@ class App extends Component {
       this.saveStorage(userInfo)
     }
   }
+
+  doGoogleSignOut = async () => {
+    let user = await signOutGoogle()
+    console.log(user)
+    this.setState({ userInfo: {}, loggedIn: false, error: '' })
+    localStorage.removeItem('userInfo')
+  }
   
   saveStorage = (userInfo) => {
     localStorage.userInfo = JSON.stringify(userInfo);
   }
 
-  onClick = () => {
+  loggedIn = () => {
     this.doGoogleLogin()
+  }
+
+  signOut = () => {
+    this.doGoogleSignOut()
   }
 
   
@@ -95,7 +106,12 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <Header onClick={this.onClick} userInfo={this.state.userInfo} loggedIn={this.state.loggedIn} error={this.state.error} />
+            <Header 
+              logIn={this.loggedIn} 
+              signOut={this.signOut}
+              userInfo={this.state.userInfo} 
+              loggedIn={this.state.loggedIn} 
+              error={this.state.error} />
             {routes.map(({ path, component: C, key }) =>(
               <Route key={key} path={path} render={C} />
             ))}

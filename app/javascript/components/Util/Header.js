@@ -77,7 +77,8 @@ const Header = (props) => {
                   
         <Link to="/species" >Species</Link>
         {/* <button onClick={props.onClick}>LogIn</button>  */}
-        {props.loggedIn ? <button onClick={props.onClick}>SignOut</button> : <button onClick={props.onClick}>LogIn</button> }
+        {props.loggedIn ? <button onClick={props.signOut}>SignOut</button> : 
+        <button onClick={props.logIn}>LogIn</button> }
       </ul>
     </Container>
   );

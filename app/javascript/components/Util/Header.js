@@ -61,7 +61,7 @@ const H1 = styled.h1`
 
 
 
-const Header = () => {
+const Header = (props) => {
   return (
     <Container className="sticky-top mb-5">
       <ul className="d-flex justify-content-center align-items-center">
@@ -74,7 +74,8 @@ const Header = () => {
 
                   
         <Link to="/species" >Species</Link>
-        
+          <button onClick={props.onClick}>LogIn</button>
+          <button>SignOut</button>
       </ul>
     </Container>
   );

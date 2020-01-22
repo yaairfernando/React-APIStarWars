@@ -4,19 +4,17 @@ import Species from '../components/Species/Species';
 import Films from '../components/Films/Films'
 import FilmsApi from '../components/api/FilmsApi';
 import Header from '../components/Util/Header';
-import { loginWithGoogle } from '../Firebase'
+import { loginWithGoogle } from './Firebase'
  
-library.add(fab, faCheckSquare, faCoffee)
-export function FontAwesomeIcon(props) {
-  return <i className="fas" />
-}
 
 class App extends Component {
   state = {
     films: [],
     planets: [],
     people: [],
-    species: []
+    species: [],
+    userInfo: {},
+    loggedIn: false
   }
 
   componentDidMount = async () => {
@@ -37,19 +35,30 @@ class App extends Component {
     });
   }
   
-  doGoogleLogin = () => {
-    return loginWithGoogle()
-      .then(user => {
-        console.log(user)
-        saveStorage(user)
-      })
-      .catch(err => {
-        console.log(err.message)
-      })
+  doGoogleLogin = async () => {
+    let user = await loginWithGoogle()
+    if(!user) {
+      this.setState({ error: user.message })
+    }
+    if(user) {
+      let userInfo = {
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL
+      }
+      this.setState({ userInfo, loggedIn: true })
+      console.log(userInfo)
+      this.saveStorage(userInfo)
+    }
   }
   
   saveStorage = (storage) => {
     localStorage.storage = JSON.stringify(storage);
+  }
+
+  onClick = () => {
+    this.doGoogleLogin()
   }
 
   
@@ -76,7 +85,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <Header />
+            <Header onClick={this.onClick} />
             {routes.map(({ path, component: C, key }) =>(
               <Route key={key} path={path} render={C} />
             ))}

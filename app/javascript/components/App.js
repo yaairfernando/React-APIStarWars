@@ -3,12 +3,8 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Species from '../components/Species/Species';
 import Films from '../components/Films/Films'
 import FilmsApi from '../components/api/FilmsApi';
-import Loader from '../components/Util/Loader';
 import Header from '../components/Util/Header';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { loginWithGoogle } from '../Firebase'
  
 library.add(fab, faCheckSquare, faCoffee)
 export function FontAwesomeIcon(props) {
@@ -39,6 +35,21 @@ class App extends Component {
       people,
       species
     });
+  }
+  
+  doGoogleLogin = () => {
+    return loginWithGoogle()
+      .then(user => {
+        console.log(user)
+        saveStorage(user)
+      })
+      .catch(err => {
+        console.log(err.message)
+      })
+  }
+  
+  saveStorage = (storage) => {
+    localStorage.storage = JSON.stringify(storage);
   }
 
   

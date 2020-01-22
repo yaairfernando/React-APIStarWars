@@ -27,6 +27,10 @@ class App extends Component {
     const people = getPeople.data.contextWrites.to[0].results
     const planets = getPlanets.data.contextWrites.to[0].results
     const films = getFilms.data.contextWrites.to[0].results
+    const userInfo = localStorage.getItem('userInfo')
+    userInfo ? this.setState({ loggedIn: true }) : this.setState({ loggedIn: false})
+    this.setState({ userInfo })
+    console.log(userInfo)
     console.log("MOunting")
     this.setState({
       films,
@@ -54,8 +58,8 @@ class App extends Component {
     }
   }
   
-  saveStorage = (storage) => {
-    localStorage.storage = JSON.stringify(storage);
+  saveStorage = (userInfo) => {
+    localStorage.userInfo = JSON.stringify(userInfo);
   }
 
   onClick = () => {

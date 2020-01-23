@@ -72,9 +72,6 @@ const Btn = styled.button`
     color: black;
   }
 `
-
-
-
 const Header = (props) => {
   // {email, displayName, uid, photoURL } = props.userInfo
   const userInfo = () => {
@@ -100,7 +97,6 @@ const Header = (props) => {
 
                   
         <Link to="/species" >Species</Link>
-        {/* <button onClick={props.onClick}>LogIn</button>  */}
         {props.loggedIn ? <Btn onClick={props.signOut}>SignOut</Btn> : 
         <Btn onClick={props.logIn}>LogIn</Btn> }
       </ul>

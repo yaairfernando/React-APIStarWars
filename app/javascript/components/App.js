@@ -10,16 +10,13 @@ function PrivateRoute({path, component, ...rest}) {
   let user = localStorage.getItem('userInfo')
   user = JSON.parse(user)
   if(user && user.displayName) {
-    console.log("YESSS")
     return <Route path={path} component={component} {...rest} />
   }else {
-    console.log("NOOO")
     return <Redirect to="/" {...rest} />
   }
 }
 
 const home = () => {
-  console.log("homemm")
   return(
     <div className="container text-white">HOme</div>
   )
@@ -40,20 +37,16 @@ class App extends Component {
   componentDidMount = async () => {
     let userInfo = localStorage.getItem('userInfo')
     userInfo = JSON.parse(userInfo);
-    console.log(typeof userInfo);
     userInfo ? this.setState({ loggedIn: true }) : this.setState({ loggedIn: false})
     this.setState({ userInfo })
-    console.log("Fetching")
     const getFilms = await FilmsApi.post('/getFilms')
     const getPlanets = await FilmsApi.post('/getPlanets')
-    console.log("Almost")
     const getPeople = await FilmsApi.post('/getPeoples')
     const getSpecies = await FilmsApi.post('/getSpecies')
     const species = getSpecies.data.contextWrites.to[0].results
     const people = getPeople.data.contextWrites.to[0].results
     const planets = getPlanets.data.contextWrites.to[0].results
     const films = getFilms.data.contextWrites.to[0].results
-    console.log(userInfo)
     console.log("MOunting")
     this.setState({
       films,
@@ -76,7 +69,6 @@ class App extends Component {
         photoURL: user.photoURL
       }
       this.setState({ userInfo, loggedIn: true })
-      console.log(userInfo)
       this.saveStorage(userInfo)
     }
   }

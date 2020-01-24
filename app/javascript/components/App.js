@@ -119,6 +119,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
+   
             <Header 
               logIn={this.loggedIn} 
               signOut={this.signOut}

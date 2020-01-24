@@ -72,36 +72,86 @@ const Btn = styled.button`
     color: black;
   }
 `
+
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: row-reverse;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  right: 15px;
+  display: flex;
+  border-left: 1px solid #fff;
+  padding: 20px;
+  margin: 0 5px;
+
+  & > div.userInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 5px;
+
+    & > h5 {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    & > small {
+      font-size: 13px;
+    }
+
+    & > button {
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  & > div.img-container {
+    border-radius: 50%;
+    width: 50px;
+
+    & > img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+`
+
 const Header = (props) => {
-  // {email, displayName, uid, photoURL } = props.userInfo
   const userInfo = () => {
     if(props.loggedIn) {
       return (
-        <div>
-          <h5>{props.userInfo.displayName}</h5>
-          <small>{props.userInfo.email}</small>
-          <img src={props.userInfo.photoURL} />
-        </div>
+        <Div>
+          <div className="userInfo">
+            <h5>{props.userInfo.displayName}</h5>
+            <small>{props.userInfo.email}</small>
+            <button onClick={props.signOut}>SignOut</button>
+          </div>
+          <div className="img-container">
+            <img src={props.userInfo.photoURL} />
+          </div>
+        </Div>
       )
     }
   }
   return (
     <Container className="sticky-top mb-5">
       <ul className="d-flex justify-content-center align-items-center">
-        
-          <Link to="/films" >Films</Link>
-
-          <Link to="/" >
-            <h1>Star Wars</h1>
-          </Link>
-
-                  
+        <Link to="/films" >Films</Link>
+        <Link to="/" >
+          <h1>Star Wars</h1>
+        </Link> 
         <Link to="/species" >Species</Link>
-        {props.loggedIn ? <Btn onClick={props.signOut}>SignOut</Btn> : 
-        <Btn onClick={props.logIn}>LogIn</Btn> }
+        {!props.loggedIn ? <Btn onClick={props.logIn}>LogIn</Btn> : '' }
+        {userInfo()}
       </ul>
       <div>
-      {userInfo()}
     </div>
     </Container>
   );

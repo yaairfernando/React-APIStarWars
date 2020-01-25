@@ -9,12 +9,14 @@ import { loginWithGoogle, signOutGoogle } from './Firebase'
 function PrivateRoute({path, component, ...rest}) {
   let user = localStorage.getItem('userInfo')
   user = JSON.parse(user)
-  if(!user) {
-    console.log("access")
-    return <Route path={path} component={component} {...rest} />
-  }else {
+  // console.log(!user)
+  if(user) {
     console.log("denied")
     return <Redirect to="/" {...rest} />
+  }else {
+    console.log(user)
+    console.log("access")
+    return <Route path={path} component={component} {...rest} />
   }
 }
 

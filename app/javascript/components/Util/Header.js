@@ -10,6 +10,11 @@ const Container = styled.div`
   color: #fff;
   background: black;
   text-align: center;
+  justify-content: flex-start;
+
+  @media(max-width: 992px) {
+    display: none;
+  }
 
   & > ul {
     list-style: none;
@@ -42,11 +47,21 @@ const Container = styled.div`
         background-size: 0 0;
         transition: background-size 0.25s;
 
+        @media (max-width: 1200px) {
+          padding: 0 20px;
+        }
+
         &:hover {
           cursor: pointer;
           text-decoration: none;
           background-size: 4px 90px;
           color: black;
+        }
+
+        & > img {
+          @media (max-width: 1200px) {
+            width: 45% !important;
+          }
         }
       }
     }
@@ -156,46 +171,174 @@ const Div = styled.div`
   }
 `
 
-const Header = (props) => {
-  const userInfo = () => {
-    if(props.loggedIn) {
-      return (
-        <Div>
-          <div className="userInfo">
-            <h5>{props.userInfo.displayName}</h5>
-            <small>{props.userInfo.email}</small>
-            <button onClick={props.signOut}>SignOut</button>
-          </div>
-          <div className="img-container">
-            <img src={props.userInfo.photoURL} />
-          </div>
-        </Div>
-      )
+const Nav = styled.nav`
+  @media(max-width: 992px) {
+    background: black;
+    height: 50px;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+    transition: all 0.5s ease-out;
+
+    & > div.d-flex {
+      transition: all 0.5s ease-out;
+      position: absolute;
+      left: -100%;
+      z-index: 3;
+    }
+
+    & > div.d-flex.no-margin {
+      transition: all 0.5s ease-out;
+      position: absolute;
+      left: 0%;
+      z-index: 3;
     }
   }
-  return (
-    <nav className="navbar navbar-expand-lg p-0">
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <Container className="sticky-top mb-5 collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="d-flex justify-content-between align-items-center w-100">
-          <a className="" href="#">Navbar</a>
-          <div className="links-container">
-            <Link to="/films" >Films</Link>
-            <Link to="/" className="w-100">
-              <img src={Logo} className="w-25" />
-            </Link> 
-            <Link to="/species" >Species</Link>
+
+  & > button.navbar-toggler {
+    margin: 4px 13px;
+    background: white;
+    /* border: 1px solid #999; */
+    border-radius: 5px;
+  }
+`
+
+const BtnMenu = styled.div`
+  display: none;
+  @media(max-width: 992px) {
+    display: block;
+    cursor: pointer;
+    transition: all 0.5s ease-out;
+    margin: 13px 0 0 10px;
+  
+    & > div.btn-line {
+      width: 29px;
+      transition: all 0.5s ease-out;
+      height: 3px;
+      margin: 0 0 5px 0;
+      background: #444;
+    }
+  }
+`
+
+const Menu = styled.div`
+  display: none;
+  @media(max-width: 992px) {
+    display: block;
+    width: 50%;
+    height: 100vh !important;
+
+    & > ul {
+      flex-direction: column-reverse;
+      background: red;
+      padding: 20px;
+      margin: 0 !important;
+      width: 100%;
+      justify-content: flex-end !important;
+      height: 100%;
+
+      & > a, & > button {
+        background: paleturquoise;
+        width: 100%;
+        letter-spacing: 2px;
+        padding: 10px;
+        text-align: center;
+        font-size: 17px !important;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+        height: auto;
+
+        & > img {
+          width: 10% !important;
+        }
+      }
+
+      & > div {
+        border: 0 !important;
+        height: auto !important;
+      }
+    }
+  }
+`
+
+class Header extends React.Component {
+
+  state = {
+    show: false
+  }
+  render() {
+    const userInfo = () => {
+      if(this.props.loggedIn) {
+        return (
+          <Div>
+            <div className="userInfo">
+              <h5>{this.props.userInfo.displayName}</h5>
+              <small>{this.props.userInfo.email}</small>
+              <button onClick={this.props.signOut}>SignOut</button>
+            </div>
+            <div className="img-container">
+              <img src={this.props.userInfo.photoURL} />
+            </div>
+          </Div>
+        )
+      }
+    }
+    const onClick = (e) => {
+      const div = document.querySelector('#divMenu')
+      if(!this.state.show) {
+        div.classList.add("no-margin")
+        this.setState({ show: true })
+      }else {
+        div.classList.remove("no-margin")
+        console.log("true");
+        this.setState({ show: false })
+      }
+    }
+    return (
+      <div>
+        <Nav className="navbar navbar-expand-lg p-0">
+          <div className="d-flex" id="divMenu">
+            <Menu id="navbarSupportedContent">
+              <ul className="d-flex justify-content-between w-100">
+                  <Link to="/films" >Films</Link>
+                  <Link to="/" className="w-100">
+                    <img src={Logo} className="w-25" />
+                  </Link> 
+                  <Link to="/species" >Species</Link>
+                
+                {!this.props.loggedIn ? <Btn onClick={this.props.logIn}>LogIn</Btn> : '' }
+                {userInfo()}
+              </ul>
+            </Menu>
+            <BtnMenu class="menu-btn" onClick={onClick}>
+                <div class="btn-line"></div>
+                <div class="btn-line"></div>
+              <div class="btn-line"></div>
+            </BtnMenu>
           </div>
-          {!props.loggedIn ? <Btn onClick={props.logIn}>LogIn</Btn> : '' }
-          {userInfo()}
-        </ul>
-        <div>
+          <Container className="sticky-top mb-5" id="navbarSupportedContent">
+            <ul className="d-flex justify-content-between align-items-center w-100">
+              <a className="" href="#">Navbar</a>
+              <div className="links-container">
+                <Link to="/films" >Films</Link>
+                <Link to="/" className="w-100">
+                  <img src={Logo} className="w-25" />
+                </Link> 
+                <Link to="/species" >Species</Link>
+              </div>
+              {!this.props.loggedIn ? <Btn onClick={this.props.logIn}>LogIn</Btn> : '' }
+              {userInfo()}
+            </ul>
+            <div>
+          </div>
+          </Container>
+        </Nav>
+        
       </div>
-      </Container>
-    </nav>
-  );
+      
+    );
+
+  }
+
 };
 
 export default Header;

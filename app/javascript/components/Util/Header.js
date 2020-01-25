@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from '../img/StarWarsLogo.png'
+import GalacticLogo from '../img/galacticLogo.jpg'
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
@@ -391,7 +392,9 @@ class Header extends React.Component {
           </div>
           <Container className="mb-5" id="navbarSupportedContent">
             <ul className="d-flex justify-content-between align-items-center w-100">
-              <a className="" href="#">Navbar</a>
+              <Link to="/" style={{ width:"370px" }}>
+                <img src={GalacticLogo} className="w-100" style={{ borderRadius: "50%" }} />
+              </Link>
               <div className="links-container">
                 <Link to="/films" >Films</Link>
                 <Link to="/" className="w-100">

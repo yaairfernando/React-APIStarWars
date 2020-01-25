@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import Species from '../components/Species/Species';
 import Films from '../components/Films/Films'
 import FilmsApi from '../components/api/FilmsApi';
-import Loader from '../components/Util/Loader';
 import Header from '../components/Util/Header';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-brands-svg-icons'
-import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { loginWithGoogle, signOutGoogle } from './Firebase'
  
-library.add(fab, faCheckSquare, faCoffee)
-export function FontAwesomeIcon(props) {
-  return <i className="fas" />
+function PrivateRoute({path, component, ...rest}) {
+  let user = localStorage.getItem('userInfo')
+  user = JSON.parse(user)
+  // console.log(!user)
+  if(user) {
+    console.log("denied")
+    return <Redirect to="/" {...rest} />
+  }else {
+    console.log(user)
+    console.log("access")
+    return <Route path={path} component={component} {...rest} />
+  }
+}
+
+const home = () => {
+  return(
+    <div className="container text-white">HOme</div>
+  )
 }
 
 class App extends Component {
@@ -20,10 +31,18 @@ class App extends Component {
     films: [],
     planets: [],
     people: [],
-    species: []
+    species: [],
+    userInfo: {},
+    loggedIn: false,
+    error: ''
   }
 
+
   componentDidMount = async () => {
+    let userInfo = localStorage.getItem('userInfo')
+    userInfo = JSON.parse(userInfo);
+    userInfo ? this.setState({ loggedIn: true }) : this.setState({ loggedIn: false})
+    this.setState({ userInfo })
     const getFilms = await FilmsApi.post('/getFilms')
     const getPlanets = await FilmsApi.post('/getPlanets')
     const getPeople = await FilmsApi.post('/getPeoples')
@@ -40,9 +59,46 @@ class App extends Component {
       species
     });
   }
+  
+  doGoogleLogin = async () => {
+    let user = await loginWithGoogle()
+    if(!user) {
+      this.setState({ error: user.message })
+    }
+    if(user) {
+      let userInfo = {
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL
+      }
+      this.setState({ userInfo, loggedIn: true })
+      this.saveStorage(userInfo)
+    }
+  }
+
+  doGoogleSignOut = async () => {
+    let user = await signOutGoogle()
+    console.log(user)
+    this.setState({ userInfo: {}, loggedIn: false, error: '' })
+    localStorage.removeItem('userInfo')
+  }
+  
+  saveStorage = (userInfo) => {
+    localStorage.userInfo = JSON.stringify(userInfo);
+  }
+
+  loggedIn = () => {
+    this.doGoogleLogin()
+  }
+
+  signOut = () => {
+    this.doGoogleSignOut()
+  }
 
   
   render() {
+    console.log(this.state);
     const films = (props) => {
       return <Films films={this.state.films} planets={this.state.planets} people={this.state.people} />
     }
@@ -65,9 +121,16 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <div>
-            <Header />
+   
+            <Header 
+              logIn={this.loggedIn} 
+              signOut={this.signOut}
+              userInfo={this.state.userInfo} 
+              loggedIn={this.state.loggedIn} 
+              error={this.state.error} />
+            <Route exact path='/' component={home} />
             {routes.map(({ path, component: C, key }) =>(
-              <Route key={key} path={path} render={C} />
+              <PrivateRoute key={key} path={path} render={C} />
             ))}
           </div>
         </BrowserRouter>

@@ -39,8 +39,8 @@
 
 ## About The Project
 
-![Screenshot Image](app/assets/images/logoRepositorio.png) 
-![Screenshot Image](app/assets/images/logoRepositorio2.png) 
+![Screenshot Image](app/assets/images/logoRepo.png) 
+![Screenshot Image](app/assets/images/logoRepo2.png) 
 
 ### Built With
 The project was developed using the following technologies:

@@ -95,7 +95,7 @@ class SpecieItem extends Component {
               <h5 className="card-title">{name}</h5>
               <p className="card-text">Language: {language}</p>
               <p className="card-text">Skin Color: {skin_colors}</p>
-              
+            
               <Button onClick={this.onClick} data={this.props.dataId}>
                 ADD
               </Button>

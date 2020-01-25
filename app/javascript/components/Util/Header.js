@@ -209,6 +209,8 @@ const BtnMenu = styled.div`
     cursor: pointer;
     transition: all 0.5s ease-out;
     margin: 13px 0 0 10px;
+    height: 21px;
+    opacity: 1;
   
     & > div.btn-line {
       width: 29px;
@@ -216,6 +218,26 @@ const BtnMenu = styled.div`
       height: 3px;
       margin: 0 0 5px 0;
       background: #444;
+    }
+
+    &.close {
+      transform: rotate(180deg);
+      height: 21px;
+      opacity: 1;
+
+      & > .btn-line {
+        &:nth-child(1) {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: rotate(-45deg) translate(7px, -6px);
+        }
+      }
     }
   }
 `
@@ -262,6 +284,11 @@ const Menu = styled.div`
 
 class Header extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.menu = React.createRef()
+  }
+
   state = {
     show: false
   }
@@ -283,18 +310,22 @@ class Header extends React.Component {
       }
     }
     const onClick = (e) => {
-      const div = document.querySelector('#divMenu')
+      const div = document.querySelector('#divMenu');
+      const menuBtn = this.menu.current;
+      console.log(menuBtn)
       if(!this.state.show) {
         div.classList.add("no-margin")
+        menuBtn.classList.add("close")
         this.setState({ show: true })
       }else {
+        menuBtn.classList.remove("close")
         div.classList.remove("no-margin")
         console.log("true");
         this.setState({ show: false })
       }
     }
     return (
-      <div>
+      <div className="sticky-top mb-4">
         <Nav className="navbar navbar-expand-lg p-0">
           <div className="d-flex" id="divMenu">
             <Menu id="navbarSupportedContent">
@@ -309,13 +340,13 @@ class Header extends React.Component {
                 {userInfo()}
               </ul>
             </Menu>
-            <BtnMenu class="menu-btn" onClick={onClick}>
+            <BtnMenu class="menu-btn" ref={this.menu} onClick={onClick}>
                 <div class="btn-line"></div>
                 <div class="btn-line"></div>
               <div class="btn-line"></div>
             </BtnMenu>
           </div>
-          <Container className="sticky-top mb-5" id="navbarSupportedContent">
+          <Container className="mb-5" id="navbarSupportedContent">
             <ul className="d-flex justify-content-between align-items-center w-100">
               <a className="" href="#">Navbar</a>
               <div className="links-container">

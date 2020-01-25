@@ -61,6 +61,10 @@ const Div = styled.div`
   //   opacity: 0.2;
   //   background: linear-gradient(to bottom right, rgba(255, 0, 0, 0.7) 15%, rgba(0, 0, 0, 1));
   // }
+  @media(max-width: 768px) {
+    border-right: none;
+    border-bottom: 2px solid #9e4f60;
+  }
 `
 
 const Row = styled.div`

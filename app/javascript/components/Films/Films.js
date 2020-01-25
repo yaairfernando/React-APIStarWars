@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import Loader from '../Util/Loader';
 import FilmItem from './FilmItem';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  @media(max-width: 768px) {
+    margin-top: 50px;
+    padding: 0 50px !important;
+  }
+`
 
 class Films extends Component {
 
@@ -17,7 +25,7 @@ class Films extends Component {
       }
     }
     return(
-      <div className="container pr-4 pl-4">{renderContent()}</div>
+      <Container className="container pr-4 pl-4">{renderContent()}</Container>
     )
   }
 }

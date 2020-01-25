@@ -181,7 +181,7 @@ const Nav = styled.nav`
     & > div.d-flex {
       transition: all 0.5s ease-out;
       position: absolute;
-      left: -50%;
+      left: -350px;
       z-index: 3;
     }
 
@@ -251,7 +251,7 @@ const Menu = styled.div`
   display: none;
   @media(max-width: 992px) {
     display: block;
-    width: 33%;
+    width: 350px;
     height: 100vh !important;
 
     & > ul {
@@ -317,7 +317,7 @@ const Menu = styled.div`
       & > div.logo-container {
         & > a.logo{
           & > img {
-            width: 100% !important;
+            width: 50% !important;
           }
         }
         & > div {
@@ -373,7 +373,7 @@ class Header extends React.Component {
               <ul className="d-flex justify-content-between w-100">
                 <div className="logo-container d-flex flex-grow-1 align-items-end">
                   <Link to="/" className="w-100 logo d-flex align-items-end justify-content-center">
-                    <img src={Logo} className="w-25" />
+                    <img src={Logo} style={{ width: "23%" }} />
                   </Link> 
                 </div>
                   <Link to="/films" className="link" >Films</Link>
@@ -395,7 +395,7 @@ class Header extends React.Component {
               <div className="links-container">
                 <Link to="/films" >Films</Link>
                 <Link to="/" className="w-100">
-                  <img src={Logo} className="w-25" />
+                  <img src={Logo} style={{ width: "23%" }} />
                 </Link> 
                 <Link to="/species" >Species</Link>
               </div>

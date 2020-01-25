@@ -100,7 +100,6 @@ const Btn = styled.button`
   border: none;
   background: none;
   color: #fff;
-  border-left: 1px solid #fff;
   height: 100%;
   margin: 0px;
   padding: 0 87px;
@@ -128,7 +127,6 @@ const Div = styled.div`
   flex-direction: row-reverse;
   align-items: center;
   height: 100%;
-  width: 241px;
   right: 15px;
   display: flex;
   border-left: 1px solid #fff;
@@ -140,6 +138,7 @@ const Div = styled.div`
     justify-content: center;
     align-items: flex-start;
     padding: 5px;
+    color: #fff;
 
     & > h5 {
       font-size: 14px;
@@ -173,7 +172,7 @@ const Div = styled.div`
 
 const Nav = styled.nav`
   @media(max-width: 992px) {
-    background: black;
+    background: #282C34;
     height: 50px;
     justify-content: flex-start !important;
     align-items: flex-start !important;
@@ -182,7 +181,7 @@ const Nav = styled.nav`
     & > div.d-flex {
       transition: all 0.5s ease-out;
       position: absolute;
-      left: -100%;
+      left: -50%;
       z-index: 3;
     }
 
@@ -197,7 +196,6 @@ const Nav = styled.nav`
   & > button.navbar-toggler {
     margin: 4px 13px;
     background: white;
-    /* border: 1px solid #999; */
     border-radius: 5px;
   }
 `
@@ -208,9 +206,16 @@ const BtnMenu = styled.div`
     display: block;
     cursor: pointer;
     transition: all 0.5s ease-out;
-    margin: 13px 0 0 10px;
+    margin: 15px 0 0 20px;
     height: 21px;
     opacity: 1;
+
+    &:hover, &:active, &:focus {
+      & > div.btn-line {
+        background: #fff !important;
+        opacity: 1;
+      }
+    }
   
     & > div.btn-line {
       width: 29px;
@@ -246,40 +251,87 @@ const Menu = styled.div`
   display: none;
   @media(max-width: 992px) {
     display: block;
-    width: 50%;
+    width: 33%;
     height: 100vh !important;
 
     & > ul {
-      flex-direction: column-reverse;
-      background: red;
+      flex-direction: column-reverse !important;
+      background: #343A40;
       padding: 20px;
       margin: 0 !important;
       width: 100%;
       justify-content: flex-end !important;
       height: 100%;
 
-      & > a, & > button {
-        background: paleturquoise;
+      & > div.logo-container {
+        border: none !important;
+        & > a.logo {
+          flex-grow: 5;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          padding: 20px;
+  
+          & > img {
+            width: 65% !important;
+          }
+        }
+      }
+
+
+      & > a.link, & > button {
         width: 100%;
         letter-spacing: 2px;
         padding: 10px;
+        color: #999;
         text-align: center;
         font-size: 17px !important;
         text-transform: uppercase;
         margin-bottom: 2px;
         height: auto;
+        background: linear-gradient(to bottom, #e4e4e4 0%, #fff 100%);
+        background-position: 0 50%;
+        background-repeat: repeat-x;
+        background-size: 0 0;
+        transition: background-size 0.25s;
 
-        & > img {
-          width: 10% !important;
+        &:hover {
+          cursor: pointer;
+          text-decoration: none;
+          background-size: 4px 90px;
+          color: black;
         }
       }
 
       & > div {
         border: 0 !important;
         height: auto !important;
+        border-bottom: 1px solid #999 !important;
+        flex-direction: column-reverse;
       }
     }
   }
+
+  @media(max-width: 768px) {
+    & > ul {
+      & > div.logo-container {
+        & > a.logo{
+          & > img {
+            width: 100% !important;
+          }
+        }
+        & > div {
+          padding: 19px 5px;
+    
+          & > div.userInfo {
+            padding: 5px 0;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
 `
 
 class Header extends React.Component {
@@ -287,11 +339,9 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.menu = React.createRef()
+    this.divMenu = React.createRef()
   }
 
-  state = {
-    show: false
-  }
   render() {
     const userInfo = () => {
       if(this.props.loggedIn) {
@@ -309,32 +359,25 @@ class Header extends React.Component {
         )
       }
     }
-    const onClick = (e) => {
-      const div = document.querySelector('#divMenu');
+    const onClick = () => {
+      const divMenu = this.divMenu.current;
       const menuBtn = this.menu.current;
-      console.log(menuBtn)
-      if(!this.state.show) {
-        div.classList.add("no-margin")
-        menuBtn.classList.add("close")
-        this.setState({ show: true })
-      }else {
-        menuBtn.classList.remove("close")
-        div.classList.remove("no-margin")
-        console.log("true");
-        this.setState({ show: false })
-      }
+      menuBtn.classList.toggle("close")
+      divMenu.classList.toggle("no-margin")
     }
     return (
       <div className="sticky-top mb-4">
         <Nav className="navbar navbar-expand-lg p-0">
-          <div className="d-flex" id="divMenu">
+          <div className="d-flex" ref={this.divMenu}>
             <Menu id="navbarSupportedContent">
               <ul className="d-flex justify-content-between w-100">
-                  <Link to="/films" >Films</Link>
-                  <Link to="/" className="w-100">
+                <div className="logo-container d-flex flex-grow-1 align-items-end">
+                  <Link to="/" className="w-100 logo d-flex align-items-end justify-content-center">
                     <img src={Logo} className="w-25" />
                   </Link> 
-                  <Link to="/species" >Species</Link>
+                </div>
+                  <Link to="/films" className="link" >Films</Link>
+                  <Link to="/species" className="link" >Species</Link>
                 
                 {!this.props.loggedIn ? <Btn onClick={this.props.logIn}>LogIn</Btn> : '' }
                 {userInfo()}

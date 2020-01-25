@@ -50,23 +50,23 @@ const Button = styled.button`
 `
 
 const Div = styled.div`  
-  border-right: 2px solid #EDEC51;
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.2;
-    background: linear-gradient(to bottom right, rgba(255, 0, 0, 0.7) 15%, rgba(0, 0, 0, 1));
-  }
+  border-right: 2px solid #9e4f60;
+  // &::after {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   opacity: 0.2;
+  //   background: linear-gradient(to bottom right, rgba(255, 0, 0, 0.7) 15%, rgba(0, 0, 0, 1));
+  // }
 `
 
 const Row = styled.div`
   border-radius: 53px 0 0 70px;
   padding: 0px;
-  border: 2px solid;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
 `
 
 const pictures = [

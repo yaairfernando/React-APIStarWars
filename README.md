@@ -3,6 +3,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![LinkedIn][linkedin-shield2]][linkedin-url2]
+[![Hireable][hireable]][hireable-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -10,7 +11,7 @@
  <h2 align="center"> Star Wars Application with react, redux and rails </h2>
 
   <p align="center">
-    Project developed with ruby and rails in the backend and react in the front end , also I used redux to manage the data.
+    Project developed with ruby and rails in the backend and react in the front end using redux to manage the data.
     <br />
     <a href="https://github.com/YairFernando67/React-APIStarWars"><strong>Explore the docs »</strong></a>
     <br />
@@ -50,9 +51,9 @@ The project was developed using the following technologies:
 - [Redux-thunk](https://github.com/reduxjs/redux-thunk)
 - [React-router-dom](https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom)
 - [JSX](https://reactjs.org/docs/introducing-jsx.html)
-- [AXIOS](https://github.com/axios/axios)
-- [BOOTSTRAP](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
-- [STYLED-COMPONENTS](https://www.styled-components.com/)
+- [Axios](https://github.com/axios/axios)
+- [BootStrap](https://getbootstrap.com/docs/4.3/getting-started/introduction/)
+- [Styled-Components](https://www.styled-components.com/)
 
 ## Required Installations
 
@@ -60,7 +61,6 @@ The project was developed using the following technologies:
 
 This project runs on [Ruby](https://www.ruby-lang.org/en/documentation/installation/), and [Rails](http://installrails.com/)
 
-* Git 
 * Node
 * NPM
 * Ruby
@@ -76,7 +76,7 @@ Also make sure that Rails is installed, but running `rails -v`.
 Example
 ```
 $ rails -v
-Rails 5.2.4
+Rails 6.0.2.1
 ```
 
 ### Installing
@@ -102,29 +102,23 @@ user@pc:~$ cd React-APIStarWars
 Installing dependencies
 
 ```Shell
-user@pc:~$ npm init
-```
-```Shell
-user@pc:~$ npm i --save redux, react-redux, redux-thunk
-```
-```Shell
-user@pc:~$ npm i --save axios
-```
-```Shell
-user@pc:~$ npm i --save styled-components
-```
-```Shell
-user@pc:~$ npm i --save bootstrap
+user@pc:~/React-APIStarWars$ npm install
 ```
 
 ```Shell
-user@pc:~$ bundle install --without production
+user@pc:~/React-APIStarWars$ npm start
 ```
+
 ```Shell
-user@pc:~$ rails db:create
+user@pc:~/React-APIStarWars$ bundle install --without production
 ```
+
 ```Shell
-user@pc:~$ rails db:migrate
+user@pc:~/React-APIStarWars$ rails db:create
+```
+
+```Shell
+user@pc:~/React-APIStarWars$ rails db:migrate
 ```
 
 ### Serve Project
@@ -134,13 +128,13 @@ Open two tabs on the console on the same folder React-APIStarWars
 Start the local server with rails:
 
 ```Shell
-user@pc:~$ rails s
+user@pc:~/React-APIStarWars$ rails s
 ```
 
 Start the local server with react:
 
 ```Shell
-user@pc:~$ ./bin/webpack-dev-server
+user@pc:~/React-APIStarWars$ ./bin/webpack-dev-server
 ```
 
 Open your browser on [http://localhost:3000](http://localhost:3000)
@@ -190,4 +184,6 @@ Give a ⭐️ if you like this project!
 [license-url]: https://github.com/YairFernando67/React-APIStarWars/blob/master/LICENSE.txt
 [linkedin-shield2]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
 [linkedin-url2]: https://www.linkedin.com/in/softwaredeveloperyairfacio/
+[hireable]: https://cdn.rawgit.com/hiendv/hireable/master/styles/flat/yes.svg
+[hireable-url]: https://www.linkedin.com/in/softwaredeveloperyairfacio/
 
